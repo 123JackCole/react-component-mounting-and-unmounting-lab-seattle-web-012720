@@ -56,6 +56,10 @@ class Pancake extends React.Component {
     this.props.takeItOff(id, status);
   };
 
+  componentDidMount() {
+    this.startInterval();
+  }
+
   render() {
     const { timeCooked, flippedAt } = this.state;
     const firstSide = Boolean(this.state.flippedAt === null && typeof flippedAt !== "number");
@@ -80,6 +84,11 @@ class Pancake extends React.Component {
       </div>
     );
   }
+
+  componentWillUnmount() {
+    this.cleanUpInterval();
+  }
+
 }
 
 export default Pancake;
